@@ -14,13 +14,11 @@ Here is the link of the challange-
 https://www.frontendmentor.io/challenges/testimonials-grid-section-Nnw6J7Un7
 
 Here is the solution site url-
-https://drougnov.github.io/testimonials-grid-section-master/
+https://drougnov.github.io/testimonials-grid-section-main/
 
 ## Built with
 
 -HTML
-
--CSS Flexbox
 
 -CSS Grid
 
