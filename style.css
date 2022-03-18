@@ -4,117 +4,143 @@
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  --primary-text: hsla(0, 0%, 81%, 70%);
+  --header-text: hsl(0, 0%, 81%);
+  --main-bg: hsl(210, 46%, 95%);
+  --daniel-bg: hsl(263, 55%, 52%);
+  --jonathan-bg: hsl(217, 19%, 35%);
+  --white-bg: hsl(0, 0%, 100%);
+  --patrick-bg: hsl(219, 29%, 14%);
+}
 body {
-  background: hsl(210, 46%, 95%);
+  color: var(--primary-text);
+  background: var(--main-bg);
   min-height: 100vh;
+  font-size: 0.8125rem;
   font-family: "Barlow Semi Condensed", sans-serif;
   display: grid;
   justify-items: center;
   align-items: center;
 }
+h2 {
+  font-size: 1.18rem;
+  margin-bottom: 1rem;
+}
 main {
-  max-width: 1100px;
   display: grid;
-  margin: 1.5rem;
-  gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: max-content max-content;
-  grid-template-areas:
-    "d d j k"
-    "h p p k";
+  gap: 1.5rem;
+  margin: 2rem;
 }
-#daniel {
-  grid-area: d;
-  background: hsl(263, 55%, 52%);
-  z-index: 0;
+main article {
+  padding: 2rem;
+  padding-top: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+}
+main .daniel {
+  background: var(--daniel-bg);
   position: relative;
+  z-index: 0;
 }
-#daniel::before {
+main .daniel::before {
   position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
+  content: url(./images/bg-pattern-quotation.svg);
   top: 0;
-  right: 4rem;
-  background: url(./images/bg-pattern-quotation.svg) no-repeat top right;
+  right: 1.5rem;
   z-index: -1;
 }
-#jonathan {
-  grid-area: j;
-  background: hsl(217, 19%, 35%);
+main .jonathan {
+  background: var(--jonathan-bg);
 }
-#jeanette {
-  grid-area: h;
-  background: hsl(0, 0%, 100%);
+main .jeanette,
+main .kira {
+  background: var(--white-bg);
 }
-#patrick {
-  grid-area: p;
-  background: hsl(219, 29%, 14%);
+main .patrick {
+  background: var(--patrick-bg);
 }
-#kira {
-  grid-area: k;
-  background: hsl(0, 0%, 100%);
-}
-article {
-  padding: 2rem;
-  border-radius: 0.5rem;
-  font-size: 0.8125rem;
-}
-#kira,
-#jeanette {
-  box-shadow: 5px 10px 20px 0 rgba(0, 0, 0, 0.137);
-}
-.profile {
+article .profile {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 .profile img {
-  border-radius: 50%;
   max-width: 2rem;
+  border-radius: 50%;
 }
-h1 {
-  color: hsl(0, 0%, 100%);
-  margin-bottom: 1rem;
+.daniel .profile img {
+  border: 0.1rem solid var(--white-bg);
 }
-.p-name {
-  color: hsl(0, 0%, 81%);
+.patrick .profile img {
+  border: 0.1rem solid var(--daniel-bg);
 }
-.verified {
+.profile .info h1 {
+  color: var(--header-text);
+}
+.jeanette .profile .info h1,
+.kira .profile .info h1 {
+  color: var(--jonathan-bg);
+}
+.profile .info p {
   color: hsla(0, 0%, 81%, 50%);
-  font-size: 0.75rem;
 }
-#kira .verified,
-#jeanette .verified {
-  color: hsla(219, 29%, 14%, 0.5);
+.jeanette .profile .info p,
+.kira .profile .info p {
+  color: hsla(217, 19%, 35%, 50%);
 }
-article > p {
-  color: hsla(0, 0%, 81%, 70%);
+article h2 {
+  color: var(--header-text);
 }
-#kira p,
-#jeanette p {
-  color: hsla(219, 29%, 14%, 0.7);
+.jeanette h2,
+.kira h2 {
+  color: var(--jonathan-bg);
 }
-#jeanette > h1,
-#kira > h1 {
-  color: hsl(217, 19%, 35%);
+.jeanette > p,
+.kira > p {
+  color: hsla(217, 19%, 35%, 70%);
 }
-/* -------------------------------------------------------------------queries---------------------------------------------------------- */
-@media (max-width: 900px) {
+footer {
+  color: var(--jonathan-bg);
+}
+footer a {
+  color: var(--patrick-bg);
+}
+footer a:hover {
+  text-decoration: none;
+}
+@media (min-width: 650px) {
   main {
     grid-template-areas:
-      "d d d k"
-      "j j j k"
-      "h h h k"
-      "p p p k";
-    grid-template-rows: repeat(4, max-content);
+      "d d k k"
+      "j j k k"
+      "p p p p"
+      "je je je je";
+    grid-template-columns: repeat(4, 1fr);
+  }
+  main .daniel {
+    grid-area: d;
+  }
+  main .jonathan {
+    grid-area: j;
+  }
+  main .jeanette {
+    grid-area: je;
+  }
+  main .kira {
+    grid-area: k;
+  }
+  main .patrick {
+    grid-area: p;
   }
 }
-@media (max-width: 500px) {
+@media (min-width: 1050px) {
   main {
-    grid-template-areas: "d" "j" "h" "p" "k";
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, max-content);
+    font-size: 0.9125rem;
+    max-width: 1200px;
+    grid-template-areas:
+      "d d j k"
+      "je p p k";
   }
 }
